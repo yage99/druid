@@ -352,6 +352,12 @@ public class StreamAppenderator implements Appenderator
           }
         }
 
+        /***
+         * NOTE: check memory usage in task, if memory exceeds configuration, throw a runtime exception to stop current
+         * task.
+         *
+         * --- ya
+         */
         if (!skipBytesInMemoryOverheadCheck && bytesCurrentlyInMemory.get() - bytesToBePersisted > maxBytesTuningConfig) {
           // We are still over maxBytesTuningConfig even after persisting.
           // This means that we ran out of all available memory to ingest (due to overheads created as part of ingestion)
